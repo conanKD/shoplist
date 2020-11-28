@@ -3,8 +3,7 @@
     <p>
       <span
         v-on:click="$emit('del-entry', entry.id)"
-        class="material-icons"
-      >delete</span>
+        class="material-icons">delete</span>
       <input type="checkbox"
       v-on:change="$emit('toggle-completed', entry.id)" >
       <span v-bind:class="{'is-complete': entry.completed}">{{entry.title}}</span>
