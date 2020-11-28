@@ -35,9 +35,11 @@ export default {
     }
   },
   methods:{
+    //Remove entry based on id
     deleteEntry(id){
       this.entrys = this.entrys.filter(entry => entry.id !== id);
     },
+    //Toggle completed based on passed id
     toggleCompleted(id){
       this.entrys = this.entrys.map(entry =>{
         if(entry.id === id){
@@ -46,9 +48,11 @@ export default {
         return entry;
       })
     },
+    //Add entry to existing entrys
     addEntry(newObj){
       this.entrys = [...this.entrys, newObj];
     },
+    //Sort based on direction
     sortList(direction){
       var sort;
       switch (direction) {
@@ -62,6 +66,7 @@ export default {
           sort = (a, b) => a.title.localeCompare(b.title, 'de', {numeric:true});
       }
       var newData = this.entrys.sort(sort);
+      //replace entrys with new sorted entrys
       this.entrys = newData.map(entry =>{
         return entry
       });
