@@ -1,7 +1,13 @@
 <template>
   <div>
     <form v-on:submit.prevent="addEntry">
-      <input type="text" v-model="title" name="title" placeholder="Add entry...">
+      <input
+        type="text"
+        v-model="title"
+        name="title"
+        placeholder="Add entry..."
+        autocomplete="off"
+      >
       <input type="submit" value="Submit" class="btn">
     </form>
   </div>

@@ -4,6 +4,10 @@
     <EntryForm
       v-on:add-entry="addEntry"
     />
+    <div className="sortButtons">
+      <button v-on:click="() => sortList('ASC')" >&#10148;</button>
+      <button v-on:click="() => sortList('DESC')" >&#10148;</button>
+    </div>
     <EntryList
       className="entryList"
       v-bind:entryList="entrys"
@@ -27,9 +31,7 @@ export default {
   },
   data(){
     return{
-      entrys: [
-
-      ]
+      entrys: [ ]
     }
   },
   methods:{
@@ -46,6 +48,23 @@ export default {
     },
     addEntry(newObj){
       this.entrys = [...this.entrys, newObj];
+    },
+    sortList(direction){
+      var sort;
+      switch (direction) {
+        case 'ASC':
+          sort = (a, b) => a.title.localeCompare(b.title, 'de', {numeric:true});
+          break;
+        case 'DESC':
+          sort = (a, b) => b.title.localeCompare(a.title, 'de', {numeric:true});
+          break;
+        default:
+          sort = (a, b) => a.title.localeCompare(b.title, 'de', {numeric:true});
+      }
+      var newData = this.entrys.sort(sort);
+      this.entrys = newData.map(entry =>{
+        return entry
+      });
     }
   }
 }
